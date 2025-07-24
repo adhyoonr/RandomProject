@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Hadiah Untuk Dina 🎁</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Hai Dina! 🎀</h1>
-      <p class="desc">Klik kadonya yaa~</p>
-      <div id="gift-box" onclick="openGift()">
-        <img id="gift-closed" src="assets/gift.png" alt="Kado tertutup" />
-        <img
-          id="gift-opened"
-          src="assets/open-gift.png"
-          alt="Kado terbuka"
-          class="hidden"
-        />
-      </div>
-
-      <div id="message-box" class="hidden">
-        <h2>💖 Buat Dina yang cantik dan lucu 💖</h2>
-        <p id="love-message"></p>
-        <button onclick="showAnother()">Lihat lagi 💌</button>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Dina 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Hi Dina 🌼</h1>
+    <p class="intro">I have a little question for you...</p>
+    
+    <div id="question">Would you like to be my girlfriend?</div>
+    
+    <div class="button-group">
+      <button id="yesBtn">YES 💖</button>
+      <button id="noBtn">NO 😅</button>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <div id="response"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
