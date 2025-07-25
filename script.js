@@ -1,71 +1,79 @@
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const response = document.getElementById('response');
-
-const lines = [
-  "terima kasih sudah bilang YES. Aku bakal inget momen ini, bahkan saat laptopku hang.",
-  "target harian: bikin kamu senyum minimal 1x. Target bonus: 7x.",
-  "kalau kamu capek, aku dengerin. Kalau kamu lapar, ya makan lah. kalau kamu ngantuk… ya tidur, jangan dipaksa.",
-  "aku nggak janji jadi yang paling sempurna, tapi aku janji jadi yang paling niat.",
-  "deal? yuk kita gelud."
+const reactions = [
+  "Aaaa kamu senyum yaa 😍",
+  "Dinaaa jangan terlalu imut dong 😚",
+  "Senyum kamu bisa nyembuhin dunia 🌍💖",
+  "Nailong juga senyum tuh! 🐉✨",
+  "Senyum terus yaa, biar acaranya makin lancar 😘",
 ];
 
-yesBtn.addEventListener('click', () => {
-  yesBtn.disabled = true;
-  noBtn.disabled = true;
-  yesBtn.style.cursor = "default";
-  noBtn.style.cursor = "default";
-  noBtn.style.transform = "none";
+function jumpNailong() {
+  const nailong = document.querySelector('.nailong');
+  const reaction = document.getElementById('reaction');
 
-  response.innerHTML = ""; // kosongkan dulu
-  showMessages();
-});
+  nailong.classList.add('jump');
+  setTimeout(() => nailong.classList.remove('jump'), 600);
 
-// Tombol NO tetap nailong (lari) kalau belum klik YES
-noBtn.addEventListener('mouseover', () => {
-  if (!yesBtn.disabled) {
-    const offsetX = (Math.random() - 0.5) * 300;
-    const offsetY = (Math.random() - 0.5) * 200;
-    noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-  }
-});
+  const messages = [
+    "Aaaa kamu senyum yaa 😍",
+    "Senyum kamu bikin Nailong bahagia!",
+    "Cie cieee cantik bangeeet 😚",
+    "Nailong jadi salting 🐉💕",
+    "Acaranya pasti lancar kalau kamu senyum~ 🌸",
+  ];
+  const message = messages[Math.floor(Math.random() * messages.length)];
+  reaction.textContent = message;
 
-function showMessages() {
-  let i = 0;
-  const next = () => {
-    if (i >= lines.length) {
-      spawnLove(12);
-      return;
-    }
-    const p = document.createElement('p');
-    response.appendChild(p);
-    typeLine(lines[i], p, () => {
-      spawnLove(4);
-      i++;
-      setTimeout(next, 500);
-    });
-  };
-  next();
+  // Tambahkan sparkle
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  document.body.appendChild(sparkle);
+
+  // Tambahkan love
+  const love = document.createElement('div');
+  love.className = 'love';
+  document.body.appendChild(love);
+
+  // Tambahkan teks "Love you, pretty girl"
+  const loveText = document.createElement('div');
+  loveText.className = 'love-text';
+  loveText.textContent = "Love you, pretty girl 💖";
+  document.body.appendChild(loveText);
+
+  const rect = nailong.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const topY = rect.top;
+
+  sparkle.style.left = `${centerX}px`;
+  sparkle.style.top = `${topY}px`;
+
+  love.style.left = `${centerX + (Math.random() * 30 - 15)}px`;
+  love.style.top = `${topY + 10}px`;
+
+  loveText.style.left = `${centerX - 80}px`;
+  loveText.style.top = `${topY - 30}px`;
+
+  setTimeout(() => {
+    sparkle.remove();
+    love.remove();
+    loveText.remove();
+  }, 2000);
 }
+function showLoveMessage() {
+  const nailong = document.querySelector('.nailong');
+  const loveText = document.createElement('div');
+  loveText.className = 'love-text-special';
+  loveText.textContent = "Love you pretty girl 💖";
 
-function typeLine(text, node, done, idx = 0) {
-  if (idx < text.length) {
-    node.textContent += text.charAt(idx);
-    setTimeout(() => typeLine(text, node, done, idx + 1), 25);
-  } else {
-    done();
-  }
-}
+  const rect = nailong.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const topY = rect.top;
 
-function spawnLove(count = 10) {
-  for (let i = 0; i < count; i++) {
-    const love = document.createElement('div');
-    love.className = 'love';
-    love.innerHTML = "💖";
-    love.style.left = Math.random() * window.innerWidth + "px";
-    love.style.top = window.innerHeight + "px";
-    love.style.fontSize = (Math.random() * 16 + 16) + "px";
-    document.body.appendChild(love);
-    setTimeout(() => love.remove(), 3000);
-  }
+  loveText.style.left = `${centerX - 90}px`;
+  loveText.style.top = `${topY - 20}px`;
+
+  document.body.appendChild(loveText);
+
+  setTimeout(() => {
+    loveText.remove();
+  }, 2500);
 }

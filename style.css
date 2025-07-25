@@ -1,84 +1,183 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Fredoka', sans-serif;
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-  overflow: hidden;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(to top right, #fcd1d1, #ffe2e2);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  padding: 2rem;
+  color: #e91e63;
+  overflow-x: hidden;
 }
 
 .container {
-  text-align: center;
-  padding: 40px;
-  background-color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: auto;
+  background: #fff0f5;
+  border: 5px dashed #f48fb1;
+  padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
 }
 
 h1 {
-  color: #333;
   font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.intro {
+.subtext {
   font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #555;
+  margin-bottom: 1.5rem;
+  color: #ad1457;
 }
 
-#question {
-  font-size: 1.6rem;
-  margin: 20px 0;
-  color: #444;
-}
-
-.button-group {
-  margin: 30px 0;
-}
-
-button {
-  padding: 12px 30px;
-  margin: 10px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-#yesBtn {
-  background: linear-gradient(to right, #43e97b, #38f9d7);
-  color: white;
-}
-
-#yesBtn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(67, 233, 123, 0.5);
-}
-
-#noBtn {
-  background-color: #ccc;
-  color: #333;
+.game-box {
   position: relative;
 }
 
-#response {
+.nailong {
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+button {
+  background: #ff80ab;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #f50057;
+  transform: scale(1.05);
+}
+
+.reaction-text {
+  margin-top: 1rem;
   font-size: 1.4rem;
-  color: #2d2d2d;
-  margin-top: 30px;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.nailong:hover {
+  animation: wiggle 0.4s ease-in-out infinite;
+  cursor: pointer;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+.nailong.jump {
+  animation: jump-spin 0.6s ease;
+}
+
+@keyframes jump-spin {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-50px) rotate(180deg);
+  }
+  60% {
+    transform: translateY(-30px) rotate(270deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+/* Sparkle */
+.sparkle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/477/477406.png');
+  background-size: cover;
+  animation: sparkle-float 1s ease forwards;
+}
+
+@keyframes sparkle-float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.5);
+  }
 }
 
 .love {
   position: absolute;
-  font-size: 2rem;
-  animation: floatLove 3s linear forwards;
+  width: 24px;
+  height: 24px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+  background-size: cover;
+  animation: love-float 1.2s ease forwards;
   pointer-events: none;
 }
 
-@keyframes floatLove {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-200px); opacity: 0; }
+@keyframes love-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) scale(1.5);
+    opacity: 0;
+  }
+}
+.love-text {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff69b4;
+  animation: love-text-float 2s ease forwards;
+  pointer-events: none;
+  text-shadow: 1px 1px 3px #000;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+@keyframes love-text-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1.4);
+    opacity: 0;
+  }
+}
+.love-text-special {
+  position: absolute;
+  font-size: 26px;
+  font-weight: bold;
+  color: #ff1493;
+  animation: float-romantic 2.5s ease forwards;
+  pointer-events: none;
+  text-shadow: 2px 2px 5px #000;
+  font-family: 'Pacifico', cursive;
+}
+
+@keyframes float-romantic {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.7);
+    opacity: 0;
+  }
 }
